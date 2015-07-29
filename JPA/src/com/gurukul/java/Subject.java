@@ -1,7 +1,11 @@
 package com.gurukul.java;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  * Entity implementation class for Entity: Subject
@@ -15,6 +19,9 @@ public class Subject implements Serializable {
 	private int id;
 	private String name;
 	private String comments;
+
+	@ManyToMany(mappedBy="availableSubjects")
+	private List<Centre> centre;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -44,6 +51,14 @@ public class Subject implements Serializable {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public List<Centre> getCentre() {
+		return centre;
+	}
+
+	public void setCentre(List<Centre> centre) {
+		this.centre = centre;
 	}
    
 }
