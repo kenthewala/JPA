@@ -17,7 +17,9 @@ public class CentreHead implements Serializable {
 	private int id;
 	private String name;
 	private String fName;
-	private String address;
+	
+	@Embedded
+	private Address address;
 	private Integer contactNumber;
 	
 	@OneToOne(mappedBy="centreHead")
@@ -53,11 +55,11 @@ public class CentreHead implements Serializable {
 		this.fName = fName;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

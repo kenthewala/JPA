@@ -9,6 +9,7 @@
 		<class>com.gurukul.java.Question</class>
 		<class>com.gurukul.java.Answer</class>
 		<class>com.gurukul.java.Subject</class>
+		<class>com.gurukul.java.Address</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/gkool"/>
 			<property name="javax.persistence.jdbc.user" value="postgres"/>

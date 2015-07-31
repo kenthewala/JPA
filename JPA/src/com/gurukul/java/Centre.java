@@ -3,6 +3,7 @@ package com.gurukul.java;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -10,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 
 /**
  * Entity implementation class for Entity: Centre
@@ -21,7 +23,9 @@ public class Centre implements Serializable {
 	@Id
 	private int id;
 	private String name;
-	private String address;
+	
+	@Embedded
+	private Address address;
 	
 	@JoinTable(name="centre_examination",
 			joinColumns=@JoinColumn(name="centre_id"),
@@ -39,6 +43,7 @@ public class Centre implements Serializable {
 	private CentreHead centreHead;
 
 	@OneToMany(mappedBy = "centre", targetEntity = Student.class)
+	@OrderBy("name ASC")
 	private List<Student> students;
 	private static final long serialVersionUID = 1L;
 
@@ -54,11 +59,11 @@ public class Centre implements Serializable {
 		this.name = name;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
