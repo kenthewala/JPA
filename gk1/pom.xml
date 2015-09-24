@@ -57,6 +57,19 @@
 			<version>${servletapi.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.5.1-Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<!-- version 1.5.8 is the latest version that will work with the slf4j-api 
+				that's currently bundled with hibernate-parent -->
+			<version>1.5.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -84,6 +97,29 @@
 					<downloadJavadocs>true</downloadJavadocs>
 					<wtpversion>2.0</wtpversion>
 					<wtpContextName>spring3</wtpContextName>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<!-- run "mvn hibernate3:hbm2ddl" to generate a schema -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>hibernate3-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<components>
+						<component>
+							<name>hbm2ddl</name>
+							<implementation>jpaconfiguration</implementation>
+						</component>
+					</components>
+					<componentProperties>
+						<persistenceunit>gk1</persistenceunit>
+						<outputfilename>schema.ddl</outputfilename>
+						<drop>true</drop>
+						<create>true</create>
+						<export>false</export>
+						<format>true</format>
+					</componentProperties>
 				</configuration>
 			</plugin>
 
